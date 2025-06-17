@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "@fontsource/poppins"; /* optional if already imported in JS */
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.heading {
+  @apply text-2xl font-bold text-blue-400;
+}
