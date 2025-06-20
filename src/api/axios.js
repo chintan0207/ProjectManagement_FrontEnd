@@ -1,7 +1,8 @@
 import axios from "axios";
 import { StorageKeys } from "../utils/Constants";
+import useAuthStore from "../stores/useAuthStore"; // 👈 Import store directly
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000/api/v1";
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
@@ -9,17 +10,19 @@ const axiosInstance = axios.create({
   timeout: 10000,
 });
 
+// Request interceptor
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem(StorageKeys.ACCESS_TOKEN);
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    const accessToken = useAuthStore.getState().accessToken;
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
     return config;
   },
   (error) => Promise.reject(error)
 );
 
+// Response interceptor with token refresh
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -28,47 +31,40 @@ axiosInstance.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
-      try {
-        const refreshToken = localStorage.getItem(StorageKeys.REFRESH_TOKEN);
+      const { refreshToken, setTokens, logout } = useAuthStore.getState();
 
-        if (!refreshToken) {
-          localStorage.removeItem(StorageKeys.ACCESS_TOKEN);
-          window.location.href = "/login";
-          return Promise.reject(error);
-        }
-
-        const response = await axios.post(
-          `${API_URL}/auth/refresh-accesstoken`,
-          { refreshToken },
-          {
-            withCredentials: true,
-          }
-        );
-
-        if (response?.data?.accessToken) {
-          localStorage.setItem(
-            StorageKeys.ACCESS_TOKEN,
-            response?.data?.accessToken
-          );
-        }
-
-        if (response?.data?.refreshToken) {
-          localStorage.setItem(
-            StorageKeys.REFRESH_TOKEN,
-            response?.data?.refreshToken
-          );
-        }
-
-        originalRequest.headers.Authorization = `Bearer ${response?.data?.accessToken}`;
-        return axiosInstance(originalRequest)
-      } catch (error) {
-        localStorage.removeItem(StorageKeys.ACCESS_TOKEN);
-        localStorage.removeItem(StorageKeys.REFRESH_TOKEN);
-        window.location.href = "/login";
-
+      if (!refreshToken) {
+        logout();
         return Promise.reject(error);
       }
+
+      try {
+        const res = await axios.post(
+          `${API_URL}/auth/refresh-accesstoken`,
+          { refreshToken },
+          { withCredentials: true }
+        );
+
+        const newAccessToken = res?.data?.accessToken;
+        const newRefreshToken = res?.data?.refreshToken;
+
+        if (newAccessToken) {
+          setTokens({
+            accessToken: newAccessToken,
+            refreshToken: newRefreshToken,
+          });
+          originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+          return axiosInstance(originalRequest);
+        } else {
+          logout();
+        }
+      } catch (refreshError) {
+        logout();
+        return Promise.reject(refreshError);
+      }
     }
+
+    return Promise.reject(error);
   }
 );
 

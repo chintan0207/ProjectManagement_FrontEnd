@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { API_URL, StorageKeys } from "../utils/Constants";
-import { toast } from "react-hot-toast";
+import { toast } from "sonner";
 import axiosInstance from "../api/axios";
 
 const useAuthStore = create(
@@ -35,6 +35,7 @@ const useAuthStore = create(
           } else {
             toast.error(response?.data?.message || "Login failed");
           }
+          return response?.data?.success;
         } catch (error) {
           toast.error(error?.response?.data?.message || "Login failed");
         } finally {
@@ -56,7 +57,7 @@ const useAuthStore = create(
         }
       },
 
-      register: async (userData) => {
+      registerUser: async (userData) => {
         try {
           set({ isLoading: true });
 
@@ -71,6 +72,7 @@ const useAuthStore = create(
             toast.error(response?.data?.message || "Registration failed");
           }
         } catch (error) {
+          console.log(error);
           toast.error(error?.response?.data?.message || "Registration failed");
         } finally {
           set({ isLoading: false });
