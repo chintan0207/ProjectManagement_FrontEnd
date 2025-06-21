@@ -46,7 +46,7 @@ const Login = () => {
   return (
     <div className="w-full h-screen grid grid-cols-1 md:grid-cols-2 overflow-hidden">
       {/* Left Side */}
-      <div className="hidden md:flex justify-center items-center bg-violet-600 left-image">
+      <div className="hidden md:flex justify-center items-center bg-PRIMARY left-image">
         <div className="text-black space-y-2 bg-white/80 px-10 py-10 rounded-xl">
           <h2 className="leading-snug text-black flex flex-col">
             <span className="text-4xl font-bold">Focus</span> <br />
@@ -116,7 +116,7 @@ const Login = () => {
                 Remember me
               </label>
             </div>
-            <button type="button" className="text-violet-600 hover:underline">
+            <button type="button" className="text-PRIMARY hover:underline">
               Forgot Password?
             </button>
           </div>
@@ -134,7 +134,7 @@ const Login = () => {
             Don't have an account?{" "}
             <Link
               to="/signup"
-              className="text-violet-600 hover:underline cursor-pointer"
+              className="text-PRIMARY hover:underline cursor-pointer"
             >
               Sign Up
             </Link>

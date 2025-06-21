@@ -13,24 +13,24 @@ const HomeHeader = () => {
     <header className="bg-white shadow-sm px-6 py-4 relative z-50">
       <div className="flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="text-2xl font-bold text-violet-600">
+        <Link to="/" className="text-2xl font-bold text-PRIMARY">
           Project Build
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="space-x-6 hidden md:flex md:items-center">
-          <Link to="/aboutus" className="text-gray-700 hover:text-violet-600">
+          <Link to="/aboutus" className="text-gray-700 hover:text-PRIMARY">
             About Us
           </Link>
-          <Link to="/pricing" className="text-gray-700 hover:text-violet-600">
+          <Link to="/pricing" className="text-gray-700 hover:text-PRIMARY">
             Pricing
           </Link>
-          <Link to="/contact" className="text-gray-700 hover:text-violet-600">
+          <Link to="/contact" className="text-gray-700 hover:text-PRIMARY">
             Contact
           </Link>
           <Link
             to="/login"
-            className="bg-violet-600 text-white px-4 py-2 rounded hover:bg-violet-700"
+            className="bg-PRIMARY text-white px-4 py-2 rounded hover:bg-PRIMARY-700"
           >
             Login
           </Link>
@@ -60,7 +60,7 @@ const HomeHeader = () => {
         }`}
       >
         <div className="flex items-center justify-between px-4 py-4 ">
-          <h2 className="text-xl font-bold text-violet-600">Project Build</h2>
+          <h2 className="text-xl font-bold text-PRIMARY">Project Build</h2>
           <button onClick={closeMenu} className="text-2xl text-gray-700">
             <IoClose />
           </button>
@@ -69,28 +69,28 @@ const HomeHeader = () => {
         <nav className="flex flex-col p-4 space-y-4">
           <Link
             to="/aboutus"
-            className="text-gray-700 hover:text-violet-600"
+            className="text-gray-700 hover:text-PRIMARY"
             onClick={closeMenu}
           >
             About Us
           </Link>
           <Link
             to="/pricing"
-            className="text-gray-700 hover:text-violet-600"
+            className="text-gray-700 hover:text-PRIMARY"
             onClick={closeMenu}
           >
             Pricing
           </Link>
           <Link
             to="/contact"
-            className="text-gray-700 hover:text-violet-600"
+            className="text-gray-700 hover:text-PRIMARY"
             onClick={closeMenu}
           >
             Contact
           </Link>
           <Link
             to="/login"
-            className="bg-violet-600 text-white px-4 py-2 rounded hover:bg-violet-700"
+            className="bg-PRIMARY text-white px-4 py-2 rounded hover:bg-PRIMARY-700"
             onClick={closeMenu}
           >
             Login

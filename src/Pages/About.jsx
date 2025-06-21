@@ -9,29 +9,29 @@ import {
 
 const features = [
   {
-    icon: <FaTasks className="text-violet-600 text-3xl" />,
+    icon: <FaTasks className="text-PRIMARY text-3xl" />,
     title: "Kanban Boards",
     description:
       "Organize and prioritize tasks visually with drag-and-drop boards.",
   },
   {
-    icon: <FaUsers className="text-violet-600 text-3xl" />,
+    icon: <FaUsers className="text-PRIMARY text-3xl" />,
     title: "Team Collaboration",
     description: "Communicate and share updates with real-time team chat.",
   },
   {
-    icon: <FaProjectDiagram className="text-violet-600 text-3xl" />,
+    icon: <FaProjectDiagram className="text-PRIMARY text-3xl" />,
     title: "Role-based Access",
     description:
       "Secure your workflow with custom permissions for each member.",
   },
   {
-    icon: <FaClock className="text-violet-600 text-3xl" />,
+    icon: <FaClock className="text-PRIMARY text-3xl" />,
     title: "Subtasks & Deadlines",
     description: "Break work down into subtasks and track due dates easily.",
   },
   {
-    icon: <FaNetworkWired className="text-violet-600 text-3xl" />,
+    icon: <FaNetworkWired className="text-PRIMARY text-3xl" />,
     title: "Scalable Architecture",
     description:
       "Perfect for startups to enterprise teams with remote support.",
@@ -42,7 +42,7 @@ const About = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
       {/* Header */}
-      <h1 className="text-3xl font-bold text-violet-600 mb-6">
+      <h1 className="text-3xl font-bold text-PRIMARY mb-6">
         About <span className="text-black">ProjectBuild</span>
       </h1>
       <p className="text-gray-700 mb-8">

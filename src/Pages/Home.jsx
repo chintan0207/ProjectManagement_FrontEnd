@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { plans } from "../utils/constants.js";
+import PricingCard from "../components/common/PricingCard";
 
 const Home = () => {
   return (
@@ -9,7 +11,7 @@ const Home = () => {
       <section className="bg-white py-24 px-6 text-center">
         <h1 className="text-5xl font-extrabold text-gray-900 mb-4">
           Build, Manage, and Collaborate with{" "}
-          <span className="text-violet-600">ProjectBuild</span>
+          <span className="text-PRIMARY">ProjectBuild</span>
         </h1>
         <p className="text-gray-600 text-lg max-w-3xl mx-auto mb-8">
           A platform to manage projects, assign tasks, collaborate with your
@@ -17,7 +19,7 @@ const Home = () => {
         </p>
         <Link
           to="/signup"
-          className="bg-violet-600 text-white px-6 py-3 rounded hover:bg-violet-700 transition"
+          className="bg-PRIMARY text-white px-6 py-3 rounded hover:bg-PRIMARY-700 transition"
         >
           Get Started Free
         </Link>
@@ -26,7 +28,7 @@ const Home = () => {
       {/* Features Section */}
       <section
         id="features"
-        className="bg-violet-50 py-20 px-6 text-center scroll-mt-20"
+        className="bg-PRIMARY-50 py-20 px-6 text-center scroll-mt-20"
       >
         <h2 className="text-4xl font-bold mb-12">
           All-in-One Project Management
@@ -60,48 +62,23 @@ const Home = () => {
       </section>
 
       {/* Pricing Section */}
-      <section
-        id="pricing"
-        className="bg-white py-20 px-6 text-center scroll-mt-20"
-      >
-        <h2 className="text-4xl font-bold mb-8">Flexible Pricing</h2>
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <PricingCard
-            title="Free"
-            price="$0/mo"
-            description="Perfect for individuals"
-            features={["Up to 3 Projects", "Basic Boards", "Team Chat"]}
-            cta="Start Free"
-            ctaLink="/signup"
-          />
-          <PricingCard
-            title="Pro"
-            price="$9/mo"
-            description="For growing teams"
-            features={[
-              "Unlimited Projects",
-              "Advanced Permissions",
-              "Priority Support",
-            ]}
-            highlight
-            cta="Upgrade Now"
-            ctaLink="/signup"
-          />
-          <PricingCard
-            title="Enterprise"
-            price="Let's Talk"
-            description="Custom solution"
-            features={["SSO", "Custom Roles", "Dedicated Manager"]}
-            cta="Contact Us"
-            ctaLink="#contact"
-          />
+
+      <div className="max-w-4xl mx-auto px-4 py-20">
+        <h1 className="text-4xl font-bold text-center text-PRIMARY mb-15">
+          Pricing <span className="text-black"> That Grows With Your Team</span>
+        </h1>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {plans.map((plan, idx) => (
+            <PricingCard key={idx} {...plan} />
+          ))}
         </div>
-      </section>
+      </div>
 
       {/* Contact Section */}
       <section
         id="contact"
-        className="bg-violet-50 py-20 px-6 text-center scroll-mt-20"
+        className="bg-PRIMARY-50 py-20 px-6 text-center scroll-mt-20"
       >
         <h2 className="text-4xl font-bold mb-4">Contact Us</h2>
         <p className="text-gray-600 mb-8">
@@ -109,7 +86,7 @@ const Home = () => {
         </p>
         <a
           href="mailto:support@projectbuild.com"
-          className="bg-violet-600 text-white px-6 py-3 rounded hover:bg-violet-700"
+          className="bg-PRIMARY text-white px-6 py-3 rounded hover:bg-PRIMARY-700"
         >
           support@projectbuild.com
         </a>
@@ -155,46 +132,6 @@ const FeatureCard = ({ title, desc }) => (
   <div className="bg-white shadow p-6 rounded">
     <h3 className="text-xl font-semibold mb-2">{title}</h3>
     <p className="text-gray-600">{desc}</p>
-  </div>
-);
-
-const PricingCard = ({
-  title,
-  price,
-  description,
-  features,
-  highlight,
-  cta,
-  ctaLink,
-}) => (
-  <div
-    className={`border border-gray-200 p-6 rounded shadow-sm ${
-      highlight ? "bg-violet-50 border-violet-300" : "bg-white"
-    }`}
-  >
-    <h3 className="text-2xl font-semibold mb-2">{title}</h3>
-    <p className="text-gray-500 mb-4">{description}</p>
-    <p className="text-3xl font-bold mb-6">{price}</p>
-    <ul className="text-sm text-gray-600 space-y-2 mb-6">
-      {features.map((f, i) => (
-        <li key={i}>{f}</li>
-      ))}
-    </ul>
-    {ctaLink.startsWith("/") ? (
-      <Link
-        to={ctaLink}
-        className="bg-violet-600 text-white px-4 py-2 rounded hover:bg-violet-700"
-      >
-        {cta}
-      </Link>
-    ) : (
-      <a
-        href={ctaLink}
-        className="bg-violet-600 text-white px-4 py-2 rounded hover:bg-violet-700"
-      >
-        {cta}
-      </a>
-    )}
   </div>
 );
 

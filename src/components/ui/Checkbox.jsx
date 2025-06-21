@@ -11,7 +11,7 @@ const checkboxVariants = cva(
     variants: {
       color: {
         default:
-          "text-black data-[state=checked]:bg-violet-600 data-[state=checked]:text-white",
+          "text-black data-[state=checked]:bg-PRIMARY data-[state=checked]:text-white",
         destructive:
           "bg-red-600 text-white data-[state=checked]:border-red-600",
         warning:

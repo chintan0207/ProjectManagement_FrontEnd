@@ -1,6 +1,40 @@
 @import "tailwindcss";
 @import "@fontsource/poppins"; /* optional if already imported in JS */
 
+/* 
+violet
+@theme {
+  --color-PRIMARY: #7c3aed;  
+  --color-PRIMARY-50:  #f5f3ff;
+  --color-PRIMARY-100: #ede9fe;
+  --color-PRIMARY-200: #ddd6fe;
+  --color-PRIMARY-300: #c4b5fd;
+  --color-PRIMARY-400: #a78bfa;
+  --color-PRIMARY-500: #8b5cf6;
+  --color-PRIMARY-600: #7c3aed; 
+  --color-PRIMARY-700: #6d28d9;
+  --color-PRIMARY-800: #5b21b6;
+  --color-PRIMARY-900: #4c1d95;
+} */
+
+
+@theme {
+  --color-PRIMARY: #2563eb;  
+  --color-PRIMARY-50:  #eff6ff;
+  --color-PRIMARY-100: #dbeafe;
+  --color-PRIMARY-200: #bfdbfe;
+  --color-PRIMARY-300: #93c5fd;
+  --color-PRIMARY-400: #60a5fa;
+  --color-PRIMARY-500: #3b82f6;
+  --color-PRIMARY-600: #2563eb; 
+  --color-PRIMARY-700: #1d4ed8;
+  --color-PRIMARY-800: #1e40af;
+  --color-PRIMARY-900: #1e3a8a;
+}
+
+
+
+
 body {
   font-family: 'Poppins', sans-serif;
 }

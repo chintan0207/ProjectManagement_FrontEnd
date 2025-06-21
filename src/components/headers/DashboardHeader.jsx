@@ -3,7 +3,7 @@ import { FiMenu } from "react-icons/fi";
 
 const DashboardHeader = ({ onMobileToggle, onDesktopToggle }) => {
   return (
-    <header className="h-16 bg-gray-50 border-b flex items-center justify-between px-4">
+    <header className="h-16 shadow-sm border-b border-gray-200 flex items-center justify-between px-4">
       <div className="flex items-center space-x-4">
         <button className="lg:hidden text-2xl" onClick={onMobileToggle}>
           <FiMenu />
