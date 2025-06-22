@@ -1,7 +1,6 @@
-import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { plans } from "../utils/constants.js";
+import { plans } from "../utils/Constants";
 import PricingCard from "../components/common/PricingCard";
 
 const Home = () => {

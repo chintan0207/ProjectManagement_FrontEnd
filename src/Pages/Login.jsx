@@ -20,14 +20,17 @@ const Login = () => {
     register,
     handleSubmit,
     reset,
+    getValues,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(loginSchema),
   });
 
-  const { login, isBtnLoading } = useAuthStore();
+  const { login, isBtnLoading, resendVerificationEmail, isSendEmailLoading } =
+    useAuthStore();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [showSendEmailBtn, setShowSendEmailBtn] = useState(false);
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -35,11 +38,21 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     const response = await login(data);
-    if (response) {
+    if (response === 403) {
+      setShowSendEmailBtn(true);
+    }
+    if (response !== 403) {
       reset();
       navigate("/dashboard");
     } else {
       console.log("Login failed");
+    }
+  };
+
+  const handleSendEmail = async () => {
+    const email = getValues("email"); 
+    if (email) {
+      await resendVerificationEmail(email);
     }
   };
 
@@ -129,6 +142,17 @@ const Login = () => {
           >
             {isBtnLoading ? "Signing In..." : "Sign In"}
           </Button>
+          {showSendEmailBtn && (
+            <Button
+              type="button"
+              size="sm"
+              className="w-full"
+              onClick={handleSendEmail}
+              disabled={isSendEmailLoading}
+            >
+              {isSendEmailLoading ? "Sending..." : "Resend verification Email"}
+            </Button>
+          )}
 
           <div className="text-center text-sm">
             Don't have an account?{" "}

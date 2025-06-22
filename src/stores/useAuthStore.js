@@ -12,6 +12,7 @@ const useAuthStore = create(
       refreshToken: null,
       isLoading: false,
       isBtnLoading: false,
+      isSendEmailLoading: false,
 
       login: async (data) => {
         try {
@@ -21,7 +22,6 @@ const useAuthStore = create(
             `${API_URL}/auth/login`,
             data
           );
-
           if (response?.data?.success) {
             const { loggedInUser, accessToken, refreshToken } =
               response.data.data;
@@ -32,10 +32,11 @@ const useAuthStore = create(
             set({ user: loggedInUser, accessToken, refreshToken });
 
             toast.success(response?.data?.message || "Login successful");
+            return response?.data?.success;
           } else {
             toast.error(response?.data?.message || "Login failed");
+            return response?.data?.statusCode;
           }
-          return response?.data?.success;
         } catch (error) {
           toast.error(error?.response?.data?.message || "Login failed");
         } finally {
@@ -53,7 +54,6 @@ const useAuthStore = create(
           localStorage.removeItem(StorageKeys.REFRESH_TOKEN);
           set({ user: null, accessToken: null, refreshToken: null });
           toast.success("Logged out");
-          window.location.href = "/login";
         }
       },
 
@@ -71,11 +71,61 @@ const useAuthStore = create(
           } else {
             toast.error(response?.data?.message || "Registration failed");
           }
+          return response?.data?.success;
         } catch (error) {
           console.log(error);
           toast.error(error?.response?.data?.message || "Registration failed");
         } finally {
           set({ isLoading: false });
+        }
+      },
+
+      verifyEmail: async (token) => {
+        try {
+          const response = await axiosInstance.get(
+            `${API_URL}/auth/verify/${token}`
+          );
+          if (response?.data?.success) {
+            toast.success(
+              response?.data?.message || "Email verified successfully"
+            );
+          } else {
+            toast.error(response?.data?.message || "Email verification failed");
+          }
+          return response?.data?.success;
+        } catch (error) {
+          console.log(error);
+          toast.error(
+            error?.response?.data?.message || "Email verification failed"
+          );
+        }
+      },
+
+      resendVerificationEmail: async (email) => {
+        try {
+          set({ isSendEmailLoading: true });
+          const response = await axiosInstance.post(
+            `${API_URL}/auth/resend-verify-email`,
+            { email }
+          );
+          console.log(response);
+          if (response?.data?.success) {
+            toast.success(
+              response?.data?.message || "Verification email sent successfully"
+            );
+          } else {
+            toast.error(
+              response?.data?.message || "Error sending verification email"
+            );
+          }
+          return response?.data?.success;
+        } catch (error) {
+          console.log(error);
+          toast.error(
+            error?.response?.data?.message || "Error sending verification email"
+          );
+        } finally {
+          set({ isSendEmailLoading: false });
         }
       },
 

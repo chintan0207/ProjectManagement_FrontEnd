@@ -13,6 +13,12 @@ import PrivacyPolicy from "./Pages/PrivacyPolicy";
 import TermsAndConditions from "./Pages/TermsAndConditions";
 import CookiePolicy from "./Pages/CookiePolicy";
 import ScrollToTop from "./components/common/ScrollToTop";
+import { ProtectedRoute } from "./utils/ProtectedRoute";
+import Unauthorized from "./Pages/Unauthorized";
+import VerifyEmailPage from "./Pages/VerifyEmailPage";
+import Projects from "./Pages/Projects";
+import Notes from "./Pages/Notes";
+import Tasks from "./Pages/Tasks";
 
 const App = () => {
   return (
@@ -25,7 +31,6 @@ const App = () => {
             <Route path="/aboutus" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/pricing" element={<PricingPage />} />
-            <Route path="/unauthorized" element={<Login />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route
               path="/terms-and-conditions"
@@ -33,11 +38,18 @@ const App = () => {
             />
             <Route path="/cookie-policy" element={<CookiePolicy />} />
           </Route>
+          <Route path="/unauthorized" element={<Unauthorized />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/verify/:token" element={<VerifyEmailPage />} />
 
-          <Route path="/dashboard" element={<MainLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+          <Route element={<ProtectedRoute />}>
+            <Route element={<MainLayout />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/notes" element={<Notes />} />
+              <Route path="/tasks" element={<Tasks />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

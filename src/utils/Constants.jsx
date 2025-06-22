@@ -1,3 +1,6 @@
+import { FaFolderOpen, FaStickyNote, FaTasks } from "react-icons/fa";
+import { MdSpaceDashboard } from "react-icons/md";
+
 export const StorageKeys = {
   ACCESS_TOKEN: "accessToken",
   REFRESH_TOKEN: "refreshToken",
@@ -62,4 +65,15 @@ export const plans = [
       "Premium support & SLA",
     ],
   },
+];
+
+export const sidebarItems = [
+  {
+    label: "Dashboard",
+    path: "/dashboard",
+    icon: <MdSpaceDashboard size={20} />,
+  },
+  { label: "Projects", path: "/projects", icon: <FaFolderOpen size={18} /> },
+  { label: "Tasks", path: "/tasks", icon: <FaTasks size={18} /> },
+  { label: "Notes", path: "/notes", icon: <FaStickyNote size={18} /> },
 ];

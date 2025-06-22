@@ -1,6 +1,5 @@
-import React from "react";
 import PricingCard from "../components/common/PricingCard";
-import { plans } from "../utils/constants";
+import { plans } from "../utils/Constants";
 
 const PricingPage = () => {
   return (
