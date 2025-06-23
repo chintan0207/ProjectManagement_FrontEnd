@@ -1,8 +1,8 @@
 import axios from "axios";
-import { StorageKeys } from "../utils/Constants";
 import useAuthStore from "../stores/useAuthStore"; // 👈 Import store directly
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000/api/v1";
+const API_URL =
+  import.meta.env.VITE_API_URL || "https://api.projectbuild.live/api/v1";
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
