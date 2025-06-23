@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../components/ui/button";
-import { Checkbox } from "../components/ui/checkbox";
+import { Checkbox } from "../components/ui/Checkbox";
 import { Input } from "../components/ui/Input";
 import useAuthStore from "../stores/useAuthStore";
 import { Link, useNavigate } from "react-router-dom";
