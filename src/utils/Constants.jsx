@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { FaFolderOpen, FaStickyNote, FaTasks } from "react-icons/fa";
 import { MdSpaceDashboard } from "react-icons/md";
 
@@ -8,9 +9,14 @@ export const StorageKeys = {
 };
 
 export const API_URL =
-  import.meta.env.VITE_API_URL || "https://api.projectbuild.live/api/v1";
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8000/api/v1"
+    : "https://api.projectbuild.live/api/v1";
+
 export const BASE_URL =
-  import.meta.env.VITE_BASE_URL || "http://localhost:3000";
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : "https://projectbuild.live";
 
 export const UserRoleEnum = {
   ADMIN: "admin",

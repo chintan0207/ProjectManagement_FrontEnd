@@ -1,8 +1,7 @@
 import axios from "axios";
 import useAuthStore from "../stores/useAuthStore"; // 👈 Import store directly
+import { API_URL } from "../utils/Constants";
 
-const API_URL =
-  import.meta.env.VITE_API_URL || "https://api.projectbuild.live/api/v1";
 
 const axiosInstance = axios.create({
   baseURL: API_URL,

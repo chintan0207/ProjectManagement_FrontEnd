@@ -87,7 +87,7 @@ const Home = () => {
           href="mailto:support@projectbuild.com"
           className="bg-PRIMARY text-white px-6 py-3 rounded hover:bg-PRIMARY-700"
         >
-          support@projectbuild.com
+          mail.codewithcm@gmail.com
         </a>
       </section>
 

@@ -1,7 +1,7 @@
-import React from "react";
+/* eslint-disable no-undef */
 import { Outlet } from "react-router-dom";
-import HomeHeader from "../components/headers/HomeHeader";
 import HomeFooter from "../components/footer/HomeFooter";
+import HomeHeader from "../components/Headers/HomeHeader";
 
 const HomeLayout = () => {
   return (
