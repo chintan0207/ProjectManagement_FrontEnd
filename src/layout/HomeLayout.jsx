@@ -1,8 +1,7 @@
 /* eslint-disable no-undef */
 import { Outlet } from "react-router-dom";
 import HomeFooter from "../components/footer/HomeFooter";
-import HomeHeader from "../components/Headers/HomeHeader";
-
+import HomeHeader from "../components/headers/HomeHeader";
 const HomeLayout = () => {
   return (
     <div className="flex flex-col min-h-screen">
