@@ -22,7 +22,7 @@ const Sidebar = ({ isCollapsed }) => {
   return (
     <aside
       className={`hidden lg:flex flex-col bg-white border-r border-gray-200 transition-all duration-300 ${
-        isCollapsed ? "w-16" : "w-64"
+        isCollapsed ? "w-16" : "min-w-55"
       }`}
     >
       <div className="p-4 flex items-center justify-between">

@@ -16,9 +16,9 @@ import ScrollToTop from "./components/common/ScrollToTop";
 import { ProtectedRoute } from "./utils/ProtectedRoute";
 import Unauthorized from "./Pages/Unauthorized";
 import VerifyEmailPage from "./Pages/VerifyEmailPage";
-import Projects from "./Pages/Projects";
 import Notes from "./Pages/Notes";
 import Tasks from "./Pages/Tasks";
+import { Projects } from "./components/Projects/Projects";
 
 const App = () => {
   return (

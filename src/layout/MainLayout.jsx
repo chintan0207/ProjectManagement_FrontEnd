@@ -10,7 +10,7 @@ const MainLayout = () => {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen w-screen overflow-hidden">
       {/* Mobile Sidebar Overlay */}
       {isMobileSidebarOpen && (
         <div
