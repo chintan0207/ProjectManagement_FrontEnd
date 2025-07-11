@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import useAuthStore from "../stores/useAuthStore";
@@ -7,23 +7,25 @@ import useAuthStore from "../stores/useAuthStore";
 const VerifyEmailPage = () => {
   const { token } = useParams();
   const { verifyEmail } = useAuthStore();
-  const [status, setStatus] = useState("loading"); // loading, success
+  const [status, setStatus] = useState("loading"); // 'loading' | 'success' | 'error'
+  const calledOnce = useRef(false); // Prevents double call in dev (StrictMode)
 
   useEffect(() => {
     const verify = async () => {
+      if (calledOnce.current) return;
+      calledOnce.current = true;
+
       try {
         const res = await verifyEmail(token);
-        if (res) {
-          setStatus("success");
-        } else {
-          setStatus("error");
-        }
+        setStatus(res ? "success" : "error");
       } catch (error) {
         setStatus("error");
       }
     };
 
-    verify();
+    if (token) {
+      verify();
+    }
   }, [token, verifyEmail]);
 
   return (
